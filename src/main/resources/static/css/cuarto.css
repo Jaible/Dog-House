@@ -47,4 +47,23 @@ nav ul li a{
     padding-right: 5%;
     box-sizing: border-box;
     position:relative;
+    background-color: #CCADAF;
+    background: url(../images/patitas.jpg);
+    background-attachment: fixed;
+}
+
+h1{
+    text-align: center;
+    color:#6495ED;
+}
+
+.descripcion{
+    position:absolute;
+    top:45%;
+    left:72%;
+    width:543px;
+    background: #f4f5f7;
+    transform:translate(-50%,-50%);
+    border-radius: 10px;
+    border-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }

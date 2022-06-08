@@ -59,11 +59,16 @@ h1{
 
 .descripcion{
     position:absolute;
-    top:45%;
+    top:48%;
     left:72%;
     width:543px;
     background: #f4f5f7;
     transform:translate(-50%,-50%);
     border-radius: 10px;
     border-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+}
+
+.subir{
+    position:relative;
+    left: 43%;
 }

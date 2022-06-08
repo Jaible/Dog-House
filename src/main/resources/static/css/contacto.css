@@ -1,0 +1,86 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 6 jun. 2022, 23:13:37
+    Author     : crist
+*/
+*{ 
+margin: 0;
+padding: 0;
+}
+
+.contenedor{
+    
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+background-color: #CCADAF;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 60'%3E%3Cg %3E%3Crect fill='%23CCADAF' width='11' height='11'/%3E%3Crect fill='%23cdaeaf' x='10' width='11' height='11'/%3E%3Crect fill='%23ceafb0' y='10' width='11' height='11'/%3E%3Crect fill='%23cfb0b0' x='20' width='11' height='11'/%3E%3Crect fill='%23cfb1b0' x='10' y='10' width='11' height='11'/%3E%3Crect fill='%23d0b2b1' y='20' width='11' height='11'/%3E%3Crect fill='%23d1b3b1' x='30' width='11' height='11'/%3E%3Crect fill='%23d2b4b2' x='20' y='10' width='11' height='11'/%3E%3Crect fill='%23d3b5b2' x='10' y='20' width='11' height='11'/%3E%3Crect fill='%23d3b6b2' y='30' width='11' height='11'/%3E%3Crect fill='%23d4b7b3' x='40' width='11' height='11'/%3E%3Crect fill='%23d5b8b3' x='30' y='10' width='11' height='11'/%3E%3Crect fill='%23d5bab4' x='20' y='20' width='11' height='11'/%3E%3Crect fill='%23d6bbb4' x='10' y='30' width='11' height='11'/%3E%3Crect fill='%23d7bcb5' y='40' width='11' height='11'/%3E%3Crect fill='%23d7bdb5' x='50' width='11' height='11'/%3E%3Crect fill='%23d8beb6' x='40' y='10' width='11' height='11'/%3E%3Crect fill='%23d8bfb6' x='30' y='20' width='11' height='11'/%3E%3Crect fill='%23d9c0b7' x='20' y='30' width='11' height='11'/%3E%3Crect fill='%23dac1b8' x='10' y='40' width='11' height='11'/%3E%3Crect fill='%23dac2b8' y='50' width='11' height='11'/%3E%3Crect fill='%23dbc3b9' x='60' width='11' height='11'/%3E%3Crect fill='%23dbc4ba' x='50' y='10' width='11' height='11'/%3E%3Crect fill='%23dcc6ba' x='40' y='20' width='11' height='11'/%3E%3Crect fill='%23dcc7bb' x='30' y='30' width='11' height='11'/%3E%3Crect fill='%23ddc8bc' x='20' y='40' width='11' height='11'/%3E%3Crect fill='%23ddc9bc' x='10' y='50' width='11' height='11'/%3E%3Crect fill='%23decabd' x='70' width='11' height='11'/%3E%3Crect fill='%23decbbe' x='60' y='10' width='11' height='11'/%3E%3Crect fill='%23dfccbf' x='50' y='20' width='11' height='11'/%3E%3Crect fill='%23dfcdc0' x='40' y='30' width='11' height='11'/%3E%3Crect fill='%23dfcfc0' x='30' y='40' width='11' height='11'/%3E%3Crect fill='%23e0d0c1' x='20' y='50' width='11' height='11'/%3E%3Crect fill='%23e0d1c2' x='80' width='11' height='11'/%3E%3Crect fill='%23e1d2c3' x='70' y='10' width='11' height='11'/%3E%3Crect fill='%23e1d3c4' x='60' y='20' width='11' height='11'/%3E%3Crect fill='%23e2d4c5' x='50' y='30' width='11' height='11'/%3E%3Crect fill='%23e2d5c6' x='40' y='40' width='11' height='11'/%3E%3Crect fill='%23e2d7c7' x='30' y='50' width='11' height='11'/%3E%3Crect fill='%23e3d8c8' x='90' width='11' height='11'/%3E%3Crect fill='%23e3d9c9' x='80' y='10' width='11' height='11'/%3E%3Crect fill='%23e3daca' x='70' y='20' width='11' height='11'/%3E%3Crect fill='%23e4dbcb' x='60' y='30' width='11' height='11'/%3E%3Crect fill='%23e4dccc' x='50' y='40' width='11' height='11'/%3E%3Crect fill='%23e5ddcd' x='40' y='50' width='11' height='11'/%3E%3Crect fill='%23e5dece' x='90' y='10' width='11' height='11'/%3E%3Crect fill='%23e5e0cf' x='80' y='20' width='11' height='11'/%3E%3Crect fill='%23e6e1d0' x='70' y='30' width='11' height='11'/%3E%3Crect fill='%23e6e2d2' x='60' y='40' width='11' height='11'/%3E%3Crect fill='%23e7e3d3' x='50' y='50' width='11' height='11'/%3E%3Crect fill='%23e7e4d4' x='90' y='20' width='11' height='11'/%3E%3Crect fill='%23e7e5d5' x='80' y='30' width='11' height='11'/%3E%3Crect fill='%23e8e6d6' x='70' y='40' width='11' height='11'/%3E%3Crect fill='%23e8e7d7' x='60' y='50' width='11' height='11'/%3E%3Crect fill='%23e9e9d9' x='90' y='30' width='11' height='11'/%3E%3Crect fill='%23e9eada' x='80' y='40' width='11' height='11'/%3E%3Crect fill='%23eaebdb' x='70' y='50' width='11' height='11'/%3E%3Crect fill='%23eaecdc' x='90' y='40' width='11' height='11'/%3E%3Crect fill='%23ebedde' x='80' y='50' width='11' height='11'/%3E%3Crect fill='%23EBEEDF' x='90' y='50' width='11' height='11'/%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
+}
+
+.DogHouse
+{
+width: 160px;
+cursor: pointer;   
+}
+
+.navbar{
+    height: 15vh;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;   
+}
+
+nav{
+    flex: 1;
+    padding-left: 60px;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0px 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color:black;
+}
+
+
+.content p{
+    font-size: 20px;
+    color: black;
+    font-family: "Segoe UI";
+}
+
+.content h3{
+    font-size: 30px;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: black;
+    font-family: "Segoe UI";
+    
+}
+.content em 
+{
+font-size: 20px;
+margin-top: 24px;
+margin-bottom: 15px;
+color: black;   
+font-family: "Segoe UI";
+}
+
+
+
+
+

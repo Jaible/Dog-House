@@ -7,9 +7,9 @@
 
 body
 {
-    background-image: url(DogOnBed.JPG);
+    background-image: url(../images/DogOnBed.JPG);
     background-size: cover;
-    background-position: center;
+    background-position: fixed;
     box-sizing: border-box;
     font-family: sans-serif;
     box-sizing: border-box;
@@ -84,4 +84,3 @@ body.UserProfile
     border-bottom-left-radius: 5px;
     padding: 30px 25px;
 }
-

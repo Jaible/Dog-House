@@ -8,6 +8,8 @@
     </head>
     <body>
         <div class="container">
+
+
             <div class="navbar">
                 <nav>
                     <ul>
@@ -38,8 +40,21 @@
                         <li>Zona recreativa</li>
                     </ul>
                     <b>Coste por día:</b> 5 dolares.<br><br>
-                    <a href="index.html" class="subir"><button>Reservar</button></a>
+                    <button id="btnReservar">Reservar</button>
                 </div>
+
+                <script src="js/cuarto.js"></script>
+                <script>
+                    document.querySelector('#btnReservar').addEventListener('click', () => {
+                        Confirm.open({
+                            title: 'Reservar una habitación',
+                            message: '¿Estas seguro de que quieres reservar esta habitación?',
+                            okText: 'Aceptar',
+                            cancelText: 'Cancelar'
+                        });
+                    });
+                </script>
+
             </div>
         </div>
     </body>

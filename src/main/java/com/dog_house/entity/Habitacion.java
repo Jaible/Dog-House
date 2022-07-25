@@ -17,7 +17,7 @@ public class Habitacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_habitacion")
-    private Integer id;
+    private long id;
 
     @NotBlank
     private String nombre;
@@ -36,11 +36,11 @@ public class Habitacion implements Serializable {
     @Transient
     private MultipartFile portada;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package com.dog_house.entity;
 
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Reservacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_reservacion")
     private long id;
     
     @JoinColumn(name="habitacion_id")

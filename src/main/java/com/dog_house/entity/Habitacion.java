@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -28,7 +29,7 @@ public class Habitacion implements Serializable {
     @NotBlank
     private String servicios;
 
-    @NotBlank
+    @NotNull
     private int precio;
     
     private String rutaPortada;

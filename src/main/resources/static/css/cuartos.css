@@ -1,132 +1,89 @@
-*{
-    text-decoration: none;
+*
+{
+    padding: 0;
+    margin: 0;
+      
 }
 
-.navbar{
-    height:15vh;
-    width: 100%;
-    margin:auto;
-    display:flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-    padding-bottom: 10px;
-}
-
-.logo{
-    width: 160px;
-    cursor:pointer;
-}
-
-nav{
-    flex: 1;
-    padding-left: 60px;
-}
-
-nav ul li{
-    display:inline-block;
-    list-style: none;
-    margin: 0px 20px;
-}
-
-nav ul li a{
-    color:#6495ED;
-}
-
-.boton{
-    position:relative;
-    top:-8px;
-    right:-502px;
-}
-
-/*Finaliza CSS referente a la barra de navegación*/
-
-.container{
-    height:156vh;
-    width:100%;
-    background-position:center;
+body
+{
     background-size: cover;
-    padding-left: 5%;
-    padding-right: 5%;
+    background-position: fixed;
     box-sizing: border-box;
-    position:relative;
-    background-color: #CCADAF;
-    background: url(../images/patitas.jpg);
-    background-attachment: fixed;
+    font-family: sans-serif;
+    box-sizing: border-box;
 }
 
-.habitacion1{
-    position:absolute;
-    top:37%;
-    left:29%;
-    width:543px;
-    background: #f4f5f7;
-    transform:translate(-50%,-50%);
-    border-radius: 10px;
-    border-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+.menu-bar
+{
+    background: rgba(72, 138, 224);
     text-align: center;
+
 }
 
-.habitacion1 a{
-    color:#6495ED;
-    font-size: 20px;
-    font-weight: bold;
+.menu-bar ul
+{
+    display: inline-flex;
+    list-style: none;
+    color: white;
+    
 }
 
-.habitacion2{
-    position:absolute;
-    top:37%;
-    left:72%;
-    width:542px;
-    background: #f4f5f7;
-    transform:translate(-50%,-50%);
-    border-radius: 10px;
-    border-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+.LOGO ul {
+    margin-bottom: 0;
+}
+
+.menu-bar li
+{
+    width: 120px;
+    margin: 15px;
+    padding: 15px;
+}
+
+.menu-bar ul li a
+{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.active, .menu-bar ul li:hover
+{
+    background: #174b8e;
+    border-radius: 3px;
+}
+
+
+body.UserProfile
+{
+    background-image: url(MyInfo.JPG);
+      
+}
+
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    display: flex;
+    box-shadow: 0 1px 20px 0 rgba(72, 138, 224, 0.66);
+}
+
+.wrapper .left{
+    width: 35%;
+    background: linear-gradient(to right, #01a9ac, #01dbdf);
+    padding: 30px 25px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     text-align: center;
+    color: #fff;
+
 }
 
-.habitacion2 a{
-    color:#6495ED;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.habitacion3{
-    position:absolute;
-    top:78%;
-    left:50%;
-    width:542px;
-    background: #f4f5f7;
-    transform:translate(-50%,-50%);
-    border-radius: 10px;
-    border-shadow: 10px 10px 15px rgba(0,0,0,0.05);
-    text-align: center;
-}
-
-.habitacion3 a{
-    color:#6495ED;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.img-hab{
-    width: 542px;
-    height:320px;
-    border-radius: 10px;
-}
-
-footer{
-    position:relative;
-    top:80%;
-    left:0%;
-}
-
-h1{
-    text-align: center;
-    color:#6495ED;
-}
-
-p{
-    padding: 5px;
-    background:none;
-    font-size: 16px;
+.wrapper .right{
+    width: 65%;
+    background: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 30px 25px;
 }

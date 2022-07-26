@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/Pagos.css">
+    </head>
+    <body>
+        <header layout:fragment="header">
+            <div class="LOGO">
+                <ul>
+                    <img src="/images/LogoDH.JPG" alt="Logo" style="float: left; width: 120px; margin: 15px; padding: 15px; margin-right: 15px;">
+
+                </ul>
+            </div>
+
+            <div class="menu-bar">
+                <ul>
+                    <li><a href="UserProfile.html">Mi Cuenta</a></li>
+                    <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
+                    <li><a href="contacto.html">Contactanos</a></li>
+                    <li><a href="Login.html">Login</a></li>
+                    <li><a href="/Pagos">Pagos</a></li>
+                    <li><a href="testimonios.html">Testimonios</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="login-box">
+            <img src="images/DogHouse.jpg" class="Pago" alt="Dog Hause"/>
+            <h1>Payment</h1>
+            <form>
+                <!-- USERNAME INPUT -->
+                <label for="username">Username</label>
+                <input type="text" placeholder="Enter Username">
+                <!-- Number -->
+                <label for="Number">Card Number</label>
+                <input type="Number" placeholder="Enter Card Number">
+                <!-- Expitation Date -->
+                <label for="ExpirationDate">Expiration Date</label>
+                <input type="Number" placeholder="Enter Date">
+                <!-- Sucurity Code -->
+                <label for="Securitycode">Segurity Code</label>
+                <input type="Number" placeholder=" XXX ">
+                <input type="submit" value="Pay">
+
+            </form>
+        </div>
+    </body>
+</html>

@@ -20,7 +20,7 @@ const Confirm = {
                         <div class="confirm__content">${options.message}</div>
                         
                         <div class="confirm__buttons">
-                            <button class="confirm__button confirm__button--ok confirm__button--fill" href="Pagos.html">${options.okText}</button>
+                            <button class="confirm__button confirm__button--ok confirm__button--fill" href="/Pagos">${options.okText}</button>
                             <button class="confirm__button confirm__button--cancel">${options.cancelText}</button>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ const Confirm = {
         btnOk.addEventListener('click', () => {
             options.onok();
             this._close(confirmE1);
-            window.location.href = "Pagos.html";
+            window.location.href = "/Pagos";
         });
         
         [btnClose, btnCancel].forEach(el => {

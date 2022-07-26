@@ -27,10 +27,10 @@ public class HomeControlador {
     private ReservacionRepositorio reservacionRepositorio;
     
     @GetMapping("/habitaciones")
-    public ModelAndView paginaHabitaciones(@PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ModelAndView paginaHabitaciones(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Habitacion> habitaciones = habitacionRepositorio.findAll(pageable);
         return new ModelAndView("habitaciones")
-                .addObject("habitaciones", habitaciones);
+                .addObject("habitacion", habitaciones);
     }
     
     @GetMapping("/habitaciones/{id}")
@@ -44,5 +44,10 @@ public class HomeControlador {
     public ModelAndView paginaReservaciones(@PageableDefault(sort = "id", size = 5) Pageable pageable){
         Page<Reservacion> reservaciones = reservacionRepositorio.findAll(pageable);
         return new ModelAndView("/reservaciones").addObject("reservaciones", reservaciones);
+    }
+    
+    @GetMapping("/Pagos")
+    public String index(){
+        return "/Pagos";
     }
 }

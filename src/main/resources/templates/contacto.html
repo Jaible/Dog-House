@@ -41,40 +41,22 @@
                     <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" 
                          th:alt="*{nombre}" class="img-fluid rounded w-100"/>
                 </div>
-   
-                    <div class="content">
+
+                <div class="col-md-6">
+                    <h2 th:text="*{nombre}"></h2>
+                    <div class="mb-3">
                         <h4>Direccion</h4>
-                       <p> 1km oeste del Colegio Lincoln, Condominio Hacienda Lincoln </p>
+                        <p th:text="*{Direccion}"></p>
                         <h4>Correo electronico</h4>
-                        <em> info@doghouse.com </em>
+                        <p th:text="*{Correo Electronico}"></p>
                         <h4>Numeros Telefonicos</h4>
-                        <p> +506 60500706 </p>
-                <p> +506 60504248 </p>
+                        <p th:text="*{Numeros Telonicos}"></p>
                         <h4>WhatsApp</h4>
-                        <p> +506 60504248 </p>
+                        <p th:text="*{WhatsApp}"></p>
                         <h4>Horarios</h4>
-                      <p> Lunes a Viernes: 7am - 12:00pm y de 1:00pm - 6:00pm (Ingresos antes de las 7am con cita previa) </p>
-                      
-             <br>
-                <p> Sabados y Domingos:  8am - 12:00pm y de 1:00pm - 4:45pm (Con cita previa) </p>
-                <br>
-                <p> CERRADO de 12:00pm - 1:00pm </p>
-                       <button id="btnAceptar">Aceptar</button>
+                        <p th:text="*{Horarios}"></p>
+                       
                     </div>
-                 <script src="js/contacto.js"></script>
-                 
-               <script th:inline="javascript">
-                var email = [[${contacto.getNombre()}]];
-                    document.querySelector('#btnAceptar').addEventListener('click', () => {
-                        Confirm.open({
-                            title: 'Guardar los cambios',
-                            message: '¿Estas seguro de que quieres guardar los cambios?',
-                            okText: 'Aceptar',
-                            ModifyText: 'Modificar'
-                        });
-                    });
-                </script>
-                </div>  
-  </div>
-    </body>
+                </div>
+            </div>
 </html>

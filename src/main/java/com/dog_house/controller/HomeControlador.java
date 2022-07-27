@@ -1,7 +1,9 @@
 package com.dog_house.controller;
 
+import com.dog_house.entity.Contacto;
 import com.dog_house.entity.Habitacion;
 import com.dog_house.entity.Reservacion;
+import com.dog_house.repository.ContactoRepositorio;
 import com.dog_house.repository.HabitacionRepositorio;
 import com.dog_house.repository.ReservacionRepositorio;
 import com.dog_house.repository.UsuarioRepositorio;
@@ -27,6 +29,10 @@ public class HomeControlador {
     @Autowired
     private ReservacionRepositorio reservacionRepositorio;
     
+    @Autowired
+    
+    private ContactoRepositorio contactoRepositorio;
+    
     @GetMapping("/habitaciones")
     public ModelAndView paginaHabitaciones(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Habitacion> habitaciones = habitacionRepositorio.findAll(pageable);
@@ -51,4 +57,11 @@ public class HomeControlador {
     public String index(){
         return "/Pagos";
     }
+ @GetMapping("")
+    public ModelAndView Contacto( long id) {
+        Contacto contacto = contactoRepositorio.getOne(id);
+        return new ModelAndView("contacto")
+                .addObject("contacto", contacto);
+       
+}
 }

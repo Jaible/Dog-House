@@ -63,5 +63,5 @@ public class HomeControlador {
         Contacto contacto = contactoRepositorio.getOne((long) 1);
         return new ModelAndView("/contacto")
                 .addObject("contacto", contacto);
-}
+    }
 }

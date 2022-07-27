@@ -88,6 +88,25 @@ public class Contacto implements Serializable {
     public void setHorarios(String Horarios) {
         this.Horarios = Horarios;
     }
+
+    public Contacto(long id, String Direccion, String Correo, int Telefonos, int WhatsApp, String Horarios) {
+        this.id = id;
+        this.Direccion = Direccion;
+        this.Correo = Correo;
+        this.Telefonos = Telefonos;
+        this.WhatsApp = WhatsApp;
+        this.Horarios = Horarios;
+    }
+
+    public Contacto(String Direccion, String Correo, int Telefonos, int WhatsApp, String Horarios) {
+        this.Direccion = Direccion;
+        this.Correo = Correo;
+        this.Telefonos = Telefonos;
+        this.WhatsApp = WhatsApp;
+        this.Horarios = Horarios;
+    }
     
-   
+   public Contacto() {
+       super();
+    }
 }

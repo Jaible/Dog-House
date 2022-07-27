@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Contacto</title>
@@ -27,17 +26,23 @@
                 <ul>
                     <li><a href="UserProfile.html">Mi Cuenta</a></li>
                     <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
-                    <li><a href="contacto.html">Contactanos</a></li>
+                    <li><a href="/contacto">Contactanos</a></li>
                     <li><a href="Login.html">Login</a></li>
                     <li><a href="/Pagos">Pagos</a></li>
                     <li><a href="testimonios.html">Testimonios</a></li>
                 </ul>
             </div>
         </header>
-        
-        
 
-        <div class="container my-5" th:object="${contacto}" th:if="${Direccion == 'default'}">
+        <div class="container my-5" th:object="${contacto}" th:if="${Direccion != 'default'}">
+            <a href="/admin/contacto/nuevo" class="btn btn-primary mb-3">Crear contacto</a>
+
+            <h1>Parece ser que no hay ninguna información disponible</h1>
+        </div>
+
+        <div class="container my-5" th:object="${contacto}" th:if="${Telefonos == 'default'}">
+            <a th:href="@{/admin/contacto/{id}/editar(id=*{id})}" class="btn btn-primary mb-3">Editar contacto</a>
+
             <div class="row">
 
                 <div class="col-md-6">
@@ -56,9 +61,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="container my-5" th:object="${contacto}" th:unless="${Direccion == 'default'}">
-            <h1>Parece ser que no hay ninguna información disponible</h1>
         </div>
 </html>

@@ -38,7 +38,7 @@ public class Contacto implements Serializable {
     @NotNull
     private int WhatsApp;
     
-@NotBlank
+    @NotBlank
     private String Horarios;
 
     public long getId() {

@@ -35,28 +35,30 @@
             </div>
         </header>
         
-        <div class="container my-5" th:object="${contacto}">
+        
+
+        <div class="container my-5" th:object="${contacto}" th:if="${Direccion == 'default'}">
             <div class="row">
-                <div class="col-md-6">
-                    <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" 
-                         th:alt="*{nombre}" class="img-fluid rounded w-100"/>
-                </div>
 
                 <div class="col-md-6">
-                    <h2 th:text="*{nombre}"></h2>
                     <div class="mb-3">
                         <h4>Direccion</h4>
                         <p th:text="*{Direccion}"></p>
                         <h4>Correo electronico</h4>
-                        <p th:text="*{Correo Electronico}"></p>
+                        <p th:text="*{Correo}"></p>
                         <h4>Numeros Telefonicos</h4>
-                        <p th:text="*{Numeros Telonicos}"></p>
+                        <p th:text="*{Telefonos}"></p>
                         <h4>WhatsApp</h4>
                         <p th:text="*{WhatsApp}"></p>
                         <h4>Horarios</h4>
                         <p th:text="*{Horarios}"></p>
-                       
+
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="container my-5" th:object="${contacto}" th:unless="${Direccion == 'default'}">
+            <h1>Parece ser que no hay ninguna información disponible</h1>
+        </div>
 </html>

@@ -57,11 +57,11 @@ public class HomeControlador {
     public String index(){
         return "/Pagos";
     }
- @GetMapping("")
-    public ModelAndView Contacto( long id) {
-        Contacto contacto = contactoRepositorio.getOne(id);
-        return new ModelAndView("contacto")
+    
+    @GetMapping("/contacto")
+    public ModelAndView Contacto() {
+        Contacto contacto = contactoRepositorio.getOne((long) 1);
+        return new ModelAndView("/contacto")
                 .addObject("contacto", contacto);
-       
 }
 }

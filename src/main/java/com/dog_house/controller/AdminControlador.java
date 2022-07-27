@@ -143,7 +143,7 @@ public class AdminControlador {
         return new ModelAndView("redirect:/contacto");
     }
     
-    @PostMapping("/contacto/{id}/eliminar")
+    @GetMapping("/contacto/{id}/eliminar")
     public ModelAndView eliminarContacto() {
         Contacto contactoDB = contactoRepositorio.getOne((long) 1);
         contactoDB.setCorreo("default");

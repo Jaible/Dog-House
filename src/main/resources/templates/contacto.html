@@ -34,14 +34,15 @@
             </div>
         </header>
 
-        <div class="container my-5" th:object="${contacto}" th:if="${Direccion != 'default'}">
+        <div class="container my-5" th:object="${contacto}" th:if='${Direccion == "default"}'>
             <a href="/admin/contacto/nuevo" class="btn btn-primary mb-3">Crear contacto</a>
 
             <h1>Parece ser que no hay ninguna información disponible</h1>
         </div>
 
-        <div class="container my-5" th:object="${contacto}" th:if="${Telefonos == 'default'}">
+        <div class="container my-5" th:object="${contacto}" th:unless='${Telefonos == "default"}'>
             <a th:href="@{/admin/contacto/{id}/editar(id=*{id})}" class="btn btn-primary mb-3">Editar contacto</a>
+            <a th:href="@{/admin/contacto/{id}/eliminar(id=*{id})}" class="btn btn-danger mb-3">Eliminar contacto</a>
 
             <div class="row">
 

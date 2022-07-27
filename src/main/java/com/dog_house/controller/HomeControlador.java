@@ -22,46 +22,53 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("")
 public class HomeControlador {
-    
+
     @Autowired
     private HabitacionRepositorio habitacionRepositorio;
-    
+
     @Autowired
     private ReservacionRepositorio reservacionRepositorio;
-    
+
     @Autowired
-    
+
     private ContactoRepositorio contactoRepositorio;
-    
+
     @GetMapping("/habitaciones")
     public ModelAndView paginaHabitaciones(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Habitacion> habitaciones = habitacionRepositorio.findAll(pageable);
         return new ModelAndView("habitaciones")
                 .addObject("habitacion", habitaciones);
     }
-    
+
     @GetMapping("/habitaciones/{id}")
     public ModelAndView detalleHabitacion(@PathVariable long id, Map<String, Object> model) {
         Habitacion habitacion = habitacionRepositorio.getOne(id);
         return new ModelAndView("habitacion")
                 .addObject("habitacion", habitacion);
     }
-    
+
     @GetMapping("/reservaciones")
-    public ModelAndView paginaReservaciones(@PageableDefault(sort = "id", size = 5) Pageable pageable){
+    public ModelAndView paginaReservaciones(@PageableDefault(sort = "id", size = 5) Pageable pageable) {
         Page<Reservacion> reservaciones = reservacionRepositorio.findAll(pageable);
         return new ModelAndView("/reservaciones").addObject("reservaciones", reservaciones);
     }
-    
+
     @GetMapping("/Pagos")
-    public String index(){
+    public String index() {
         return "/Pagos";
     }
-    
+
     @GetMapping("/contacto")
     public ModelAndView Contacto() {
         Contacto contacto = contactoRepositorio.getOne((long) 1);
-        return new ModelAndView("/contacto")
-                .addObject("contacto", contacto);
+
+        if (contacto.getCorreo() == "default") {
+            return new ModelAndView("/contacto")
+                    .addObject("contacto", new Contacto());
+        } else {
+            return new ModelAndView("/contacto")
+                    .addObject("contacto", contacto);
+        }
+
     }
 }

@@ -16,7 +16,6 @@ public class Reservacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_reservacion")
     private long id;
     
     @JoinColumn(name="habitacion_id")

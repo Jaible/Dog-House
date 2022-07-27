@@ -2,7 +2,7 @@ const Confirm = {
     open(options) {
         options = Object.assign({}, {
             title: '',
-            message: '',
+            mensaje: '',
             okText: 'Aceptar',
             cancelText: 'Cancelar',
             onok: function () {},
@@ -17,7 +17,7 @@ const Confirm = {
                             <button class="confirm__close">&times;</button>
                         </div>
                         
-                        <div class="confirm__content">${options.message}</div>
+                        <div class="confirm__content">${options.mensaje}</div>
                         
                         <div class="confirm__buttons">
                             <button class="confirm__button confirm__button--ok confirm__button--fill" href="/Pagos">${options.okText}</button>

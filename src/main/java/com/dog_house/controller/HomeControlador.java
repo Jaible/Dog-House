@@ -5,6 +5,7 @@ import com.dog_house.entity.Reservacion;
 import com.dog_house.repository.HabitacionRepositorio;
 import com.dog_house.repository.ReservacionRepositorio;
 import com.dog_house.repository.UsuarioRepositorio;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,7 +35,7 @@ public class HomeControlador {
     }
     
     @GetMapping("/habitaciones/{id}")
-    public ModelAndView detalleHabitacion(@PathVariable long id) {
+    public ModelAndView detalleHabitacion(@PathVariable long id, Map<String, Object> model) {
         Habitacion habitacion = habitacionRepositorio.getOne(id);
         return new ModelAndView("habitacion")
                 .addObject("habitacion", habitacion);

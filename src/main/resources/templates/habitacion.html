@@ -50,21 +50,24 @@
                         <p th:text="*{servicios}"></p>
                         <h4>Precio</h4>
                         <span th:text="*{precio}"></span> dolares <br>
-                        <button id="btnReservar" class="btn btn-primary">Reservar</button>
+                        <a id="btnReservar" class="btn btn-primary">Reservar</a>
                     </div>
                 </div>
             </div>
-            
+
             <script src="/js/cuarto.js"></script>
-            <script>
+
+            <script th:inline="javascript">
+                var email = [[${habitacion.getNombre()}]];
+                
                 document.querySelector('#btnReservar').addEventListener('click', () => {
-                    Confirm.open({
-                        title: 'Reservar una habitación',
-                        message: '¿Estas seguro de que quieres reservar esta habitación?',
-                        okText: 'Aceptar',
-                        cancelText: 'Cancelar'
+                        Confirm.open({
+                            title: email,
+                            mensaje: '¿Estas seguro de que quieres reservar esta habitación?',
+                            okText: 'Aceptar',
+                            cancelText: 'Cancelar'
+                        });
                     });
-                });
             </script>
         </div>
     </body>

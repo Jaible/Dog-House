@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Listado de habitaciones</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/cuartos.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="LOGO">
+            <header>
+                <div>
+                    <ul>
+                        <img src="/images/LogoDH.JPG" alt="Logo" style="float: left; width: 120px; margin: 15px; padding: 15px; margin-right: 15px;">
+
+                    </ul>
+                </div>
+
+                <div class="menu-bar">
+                    <ul>
+                        <li><a href="UserProfile.html">Mi Cuenta</a></li>
+                        <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
+                        <li><a href="contacto.html">Contactanos</a></li>
+                        <li><a href="Login.html">Login</a></li>
+                        <li><a href="/Pagos">Pagos</a></li>
+                        <li><a href="testimonios.html">Testimonios</a></li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+
+        <div class="container my-5">
+            <h1>Habitaciones</h1>
+
+            <div class="text-end">
+                <a href="/admin/habitaciones/nuevo" class="btn btn-primary">Agregar pelicula</a>
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Servicios disponibles</th>
+                        <th>Precio</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="habitacion: ${habitaciones}" th:object="${habitacion}">
+                        <td style="width: 150px;"><a
+                                th:href="@{/assets/{filename}(filename=*{rutaPortada})}"
+                                data-fancybox> <img
+                                    th:src="@{/assets/{filename}(filename=*{rutaPortada})}"
+                                    class="img-thumbnail w-100">
+                            </a></td>
+                        <td>
+                            <div th:text="*{nombre}" class="fs-5 fw-bold"></div>
+                            <p th:text="*{descripcion}"></p>
+                        </td>
+                        <td>
+                            <p th:text="*{servicios}"></p>
+                        </td>
+                        <td>
+                            <span th:text="*{precio}"></span> dolares.
+                        </td>
+                        <td class="text-end"><a
+                                th:href="@{/admin/habitaciones/{id}/editar(id=*{id})}">Editar</a> <a
+                                href="javascript:void(0)" class="text-danger ms-3"
+                                th:onclick="'eliminarHabitacion(' + *{id} +')'">Eliminar</a>
+                            <form th:id="'eliminarHabitacionForm' + *{id}"
+                                  th:action="@{/admin/habitaciones/{id}/eliminar(id=*{id})}"
+                                  method="post" class="d-none"></form></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row mt-5" th:with="page=${habitaciones}">
+                <div class="col-sm-6">
+                    <div sd:pagination-sumary></div>
+                    <div class="col-sm-6">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <script>
+                    function eliminarHabitacion(id) {
+                        if (!confirm('¿Estás seguro de eliminar esta habitacion?')) {
+                            return;
+                        }
+                        $('#eliminarHabitacionForm' + id).submit();
+                    }
+                </script>
+
+                <script
+                src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+                <script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+                crossorigin="anonymous"></script>
+                <script
+                src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+                <script
+                src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            </div>
+        </div>
+    </body>
+</html>

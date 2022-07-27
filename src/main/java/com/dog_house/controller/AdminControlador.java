@@ -4,6 +4,9 @@ import com.dog_house.entity.Habitacion;
 import com.dog_house.repository.HabitacionRepositorio;
 import com.dog_house.service.AlmacenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +25,12 @@ public class AdminControlador {
     
     @Autowired
     private AlmacenServiceImpl servicio;
+    
+    @GetMapping("/habitaciones")
+    public ModelAndView listadoHabitaciones(@PageableDefault(sort="nombre", size=5) Pageable pageable){
+        Page<Habitacion> habitaciones = habitacionRepositorio.findAll(pageable);
+        return new ModelAndView("admin/habitaciones").addObject("habitaciones", habitaciones);
+    }
     
     @GetMapping("/habitaciones/nuevo")
     public ModelAndView formularioHabitacion(){

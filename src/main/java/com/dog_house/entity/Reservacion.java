@@ -1,30 +1,33 @@
 package com.dog_house.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
-public class Reservacion {
+public class Reservacion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
-    @JoinColumn(name="habitacion_id")
+    @ManyToOne
+    @JoinColumn (name="habitacion_id")
     private Habitacion habitacion;
     
-    @NotBlank
+    @NotNull
     private int noches;
     
-    @NotBlank
+    @NotNull
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate fecha;
 

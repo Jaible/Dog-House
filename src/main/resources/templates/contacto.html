@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
         <title>Contacto</title>
         <meta charset="UTF-8">
@@ -14,53 +15,48 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
-        <header layout:fragment="header">
-            <div class="LOGO">
-                <ul>
-                    <img src="/images/LogoDH.JPG" alt="Logo" style="float: left; width: 120px; margin: 15px; padding: 15px; margin-right: 15px;">
+        <header th:insert="/master :: header"></header>
 
-                </ul>
-            </div>
-
-            <div class="menu-bar">
-                <ul>
-                    <li><a href="UserProfile.html">Mi Cuenta</a></li>
-                    <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
-                    <li><a href="/contacto">Contactanos</a></li>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="/Pagos">Pagos</a></li>
-                    <li><a href="testimonios.html">Testimonios</a></li>
-                </ul>
-            </div>
-        </header>
-
-        <div class="container my-5" th:object="${contacto}" th:if='${Direccion == "default"}'>
-            <a href="/admin/contacto/nuevo" class="btn btn-primary mb-3">Crear contacto</a>
-
-            <h1>Parece ser que no hay ninguna información disponible</h1>
-        </div>
-
-        <div class="container my-5" th:object="${contacto}" th:unless='${Telefonos == "default"}'>
-            <a th:href="@{/admin/contacto/{id}/editar(id=*{id})}" class="btn btn-primary mb-3">Editar contacto</a>
-            <a th:href="@{/admin/contacto/{id}/eliminar(id=*{id})}" class="btn btn-danger mb-3">Eliminar contacto</a>
+        <div class="container my-5" th:object="${contacto}">
+            <a href="/admin/contacto/nuevo" th:if="${contacto.getDireccion() == 'default'}" 
+               class="btn btn-primary mb-3">Crear contacto</a>
+            <a th:href="@{/admin/contacto/{id}/editar(id=*{id})}" th:if="${contacto.getDireccion() != 'default'}" 
+               class="btn btn-primary mb-3">Editar contacto</a>
+            <a th:href="@{/admin/contacto/{id}/eliminar(id=*{id})}" th:if="${contacto.getDireccion() != 'default'}" 
+               class="btn btn-danger mb-3">Eliminar contacto</a>
 
             <div class="row">
-
                 <div class="col-md-6">
                     <div class="mb-3">
                         <h4>Direccion</h4>
-                        <p th:text="*{Direccion}"></p>
+                        <span th:if="${contacto.getDireccion() == 'default'}">No hay informacion disponible</span>
+                        <span th:unless="${contacto.getDireccion == 'default'}"
+                              th:text='*{Direccion}'></span>
+
                         <h4>Correo electronico</h4>
-                        <p th:text="*{Correo}"></p>
+                        <span th:if="${contacto.getCorreo() == 'default'}">No hay informacion disponible</span>
+                        <span th:unless="${contacto.getCorreo() == 'default'}"
+                              th:text='*{Correo}'></span>
+
                         <h4>Numeros Telefonicos</h4>
-                        <p th:text="*{Telefonos}"></p>
+                        <span th:if="${contacto.getTelefonos() == 0}">No hay informacion disponible</span>
+                        <span th:unless="${contacto.getTelefonos() == 0}"
+                              th:text='*{Telefonos}'></span>                        
+
                         <h4>WhatsApp</h4>
-                        <p th:text="*{WhatsApp}"></p>
+                        <span th:if="${contacto.getWhatsApp() == 0}">No hay informacion disponible</span>
+                        <span th:unless="${contacto.getWhatsApp() == 0}"
+                              th:text='*{WhatsApp}'></span>
+
                         <h4>Horarios</h4>
-                        <p th:text="*{Horarios}"></p>
+                        <span th:if="${contacto.getHorarios() == 'default'}">No hay informacion disponible</span>
+                        <span th:unless="${contacto.getHorarios() == 'default'}"
+                              th:text='*{Horarios}'></span>
 
                     </div>
                 </div>
             </div>
         </div>
+    </body>
+    <footer th:insert="/master :: footer"></footer>
 </html>

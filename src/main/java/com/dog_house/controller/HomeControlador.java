@@ -60,15 +60,32 @@ public class HomeControlador {
 
     @GetMapping("/contacto")
     public ModelAndView Contacto() {
-        Contacto contacto = contactoRepositorio.getOne((long) 1);
+        long cantidad = contactoRepositorio.count();
 
-        if (contacto.getCorreo() == "default") {
+        if (cantidad > 0) {
+            Contacto contacto = contactoRepositorio.getOne((long) 1);
+
             return new ModelAndView("/contacto")
-                    .addObject("contacto", new Contacto());
+                    .addObject("contacto", contacto);
         } else {
+            Contacto contacto = new Contacto();
+            contacto.setId((long) 1);
+            contacto.setCorreo("default");
+            contacto.setDireccion("default");
+            contacto.setHorarios("default");
+            contacto.setTelefonos(0);
+            contacto.setWhatsApp(0);
+            
+            contactoRepositorio.save(contacto);
             return new ModelAndView("/contacto")
                     .addObject("contacto", contacto);
         }
+    }
 
+    @GetMapping("/reservacion")
+    public ModelAndView mostrarReservaciones(@PageableDefault(sort = "id", size = 5) Pageable pageable) {
+        Page<Reservacion> reservaciones = reservacionRepositorio.findAll(pageable);
+        return new ModelAndView("reservaciones")
+                .addObject("reservacion", reservaciones);
     }
 }

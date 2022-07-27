@@ -2,8 +2,10 @@ package com.dog_house.controller;
 
 import com.dog_house.entity.Contacto;
 import com.dog_house.entity.Habitacion;
+import com.dog_house.entity.Reservacion;
 import com.dog_house.repository.ContactoRepositorio;
 import com.dog_house.repository.HabitacionRepositorio;
+import com.dog_house.repository.ReservacionRepositorio;
 import com.dog_house.service.AlmacenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +14,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,9 @@ public class AdminControlador {
 
     @Autowired
     private ContactoRepositorio contactoRepositorio;
+    
+    @Autowired
+    private ReservacionRepositorio reservacionRepositorio;
 
     @GetMapping("/habitaciones")
     public ModelAndView listadoHabitaciones(@PageableDefault(sort = "nombre", size = 5) Pageable pageable) {
@@ -154,5 +158,35 @@ public class AdminControlador {
 
         contactoRepositorio.save(contactoDB);
         return new ModelAndView("redirect:/contacto");
+    }
+    
+    @GetMapping("/reservacion/{id}/editar")
+    public ModelAndView editarReservación(@PathVariable long id) {
+        Reservacion reservacion = reservacionRepositorio.getOne(id);
+        return new ModelAndView("admin/editar-reservacion").addObject("reservacion", reservacion);
+    }
+    
+    @PostMapping("/reservacion/{id}/editar")
+    public ModelAndView actualizarReservacion(@PathVariable long id, 
+            @Validated Reservacion reservacion, BindingResult bindingResult) {
+        
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("admin/editar-reservacion")
+                    .addObject("reservacion", reservacion);
+        }
+        
+        Reservacion reservacionDB = reservacionRepositorio.getOne(id);
+        reservacionDB.setHabitacion(reservacionDB.getHabitacion());
+        reservacionDB.setFecha(reservacion.getFecha());
+        reservacionDB.setNoches(reservacion.getNoches());
+        
+        reservacionRepositorio.save(reservacionDB);
+        return new ModelAndView("redirect:/reservacion");
+    }
+    
+    @GetMapping("/reservacion/{id}/eliminar")
+    public String eliminarReservacion(@PathVariable long id) {
+        reservacionRepositorio.deleteById(id);
+        return "redirect:/reservacion";
     }
 }

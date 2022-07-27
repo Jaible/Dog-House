@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/cuartos.css"/>
+        <link rel="stylesheet" href="/css/master.css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -14,71 +15,9 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
-        <header layout:fragment="header">
-            <div class="LOGO">
-                <ul>
-                    <img src="/images/LogoDH.JPG" alt="Logo" style="float: left; width: 120px; margin: 15px; padding: 15px; margin-right: 15px;">
+        <header th:insert="/master :: header"></header>
 
-                </ul>
-            </div>
-
-            <div class="menu-bar">
-                <ul>
-                    <li><a href="UserProfile.html">Mi Cuenta</a></li>
-                    <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
-                    <li><a href="contacto.html">Contactanos</a></li>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="/Pagos">Pagos</a></li>
-                    <li><a href="testimonios.html">Testimonios</a></li>
-                </ul>
-            </div>
-        </header>
-
-        <div layout:fragment="form" class="container my-5">
-            <h1>Registrar nueva habitación</h1>
-            <br>
-            <form action="" method="post" th:object="${habitacion}"
-                  enctype="multipart/form-data">
-
-                <div th:if="${param.error}" class="alert alert-danger">
-                    Asegurese de rellenar todos los espacios.
-                </div>
-
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" name="nombre" placeholder="Digite el nombre"
-                           id="nombre" class="form-control" th:field="*{nombre}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripcion</label>
-                    <textarea type="text" name="descripcion" placeholder="Digite la descripcion"
-                              id="descripcion" class="form-control" th:field="*{descripcion}"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="servicios" class="form-label">Servicios disponibles</label>
-                    <textarea type="text" name="servicios" placeholder="Digite los servicios disponibles"
-                              id="servicios" class="form-control" th:field="*{servicios}"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="precio" class="form-label">Precio</label>
-                    <input type="text" name="precio" placeholder="Digite el precio"
-                           id="precio" class="form-control" th:field="*{precio}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="portada" class="form-label">Portada</label> <input
-                        type="file" name="portada" id="portada" class="form-control"
-                        th:field="*{portada}">
-                </div>
-
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </form>
-        </div>
+        <div th:insert="/admin/form :: form" class="container my-5"></div>
 
         <script
         src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -91,4 +30,5 @@
         <script
         src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     </body>
+    <footer th:insert="/master :: footer"></footer>
 </html>

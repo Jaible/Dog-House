@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Reservaciones</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/master.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header th:insert="/master :: header"></header>
+        
+        <div class="container my-5">
+            <h1>Reservaciones</h1> <br>
+            
+            <div class="card" style="width:600px;">
+                <div class="row"  th:each="reservacion : *{reservacion}"
+                         th:object="${reservacion}">
+                    <div class="col-sm-5">
+                        <img class="card-img" style="width: 250px;" 
+                             th:src="@{/assets/{filename}(filename=*{habitacion.getRutaPortada()})}"/>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="*{habitacion.getNombre()}"></h5>
+                            <span>Fecha reservada: </span> <p class="card-text" th:text="*{fecha}"></p>
+                            <span>Cantidad de noches: </span> <p class="card-text" th:text="*{noches}"></p>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <a th:href="@{/admin/reservacion/{id}/editar(id=*{id})}" class="btn btn-primary">Modificar</a>
+                            <a th:href="@{/admin/reservacion/{id}/eliminar(id=*{id})}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer th:insert="/master :: footer"></footer>
+</html>

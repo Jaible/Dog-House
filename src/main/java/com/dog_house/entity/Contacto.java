@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 public class Contacto implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_contacto")
     private long id;
 

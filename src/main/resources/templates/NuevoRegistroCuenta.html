@@ -1,0 +1,78 @@
+<HTML>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Mi Cuenta</title>
+            <link rel="stylesheet" href="Style.css">
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        </head>
+        <div class="menu-bar">
+            <ul>
+                <li><a href="UserProfile.html">Mi Cuenta</a></li>
+                <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
+                <li><a href="contacto.html">Contactanos</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li><a href="/Pagos">Pagos</a></li>
+                <li><a href="testimonios.html">Testimonios</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div layout:fragment="form" class="container my-5" enctype="multipart/form-data">
+        <h3>Llene la informacion para crear una cuenta nueva para su mascota</h3>
+        <br>
+        <form action="" method="post" th:object="${contacto}">
+
+            <div th:if="${param.error}" class="alert alert-danger">
+                Asegurese de rellenar todos los espacios.
+            </div>
+<div></div>
+
+    <div class="mb-3">
+        <label for="NombreMascota" class="form-label">Nombre de la Mascota</label>
+        <input type="text" name="NombreMascota" placeholder="Digite el nombre de su mascota"
+               id="NombreMascota" class="form-control" th:field="*{NombreMascota}">
+    </div>
+
+    <div class="mb-3">
+        <label for="Raza" class="form-label">Raza</label>
+        <input type="text" name="Raza" placeholder="Digite la Raza"
+                  id="Raza" class="form-control" th:field="*{Raza}">
+    </div>
+
+    <div class="mb-3">
+        <label for="Edad" class="form-label">Edad</label>
+        <input type="text" name="Edad" placeholder="Digite la Edad"
+                  id="Edad" class="form-control" th:field="*{Edad}">
+    </div>
+
+    <div class="mb-3">
+        <label for="Gustos" class="form-label">Gustos</label>
+        <input type="text" name="Gustos" placeholder="Digite los gustos de su mascota"
+                  id="Gustos" class="form-control" th:field="*{Gustos}">
+    </div>
+
+    <div class="mb-3">
+        <label for="Disgustos" class="form-label">Disgustos</label>
+        <input type="text" name="Disgustos" placeholder="Digite lo que no le gusta a su mascota"
+                  id="Disgustos" class="form-control" th:field="*{Disgustos}">
+    </div>
+
+    <div class="mb-3">
+        <label for="EmailDueno" class="form-label">Email Del Dueno</label>
+        <input type="text" name="EmailDueno" placeholder="Digite el email"
+                  id="EmailDueno" class="form-control" th:field="*{EmailDueno}">
+    </div>
+
+    <div class="mb-3">
+        <label for="Telefonos" class="form-label">Telefonos</label>
+        <input type="text" name="Telefonos" placeholder="Digite el Telefonos de contacto"
+                  id="EmailDueno" class="form-control" th:field="*{EmailDueno}">
+    </div>
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
+</div>
+</body>
+</html>

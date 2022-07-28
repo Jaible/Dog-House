@@ -3,10 +3,12 @@ package com.dog_house.controller;
 import com.dog_house.entity.Contacto;
 import com.dog_house.entity.Habitacion;
 import com.dog_house.entity.Reservacion;
+import com.dog_house.entity.Cuenta;
 import com.dog_house.repository.ContactoRepositorio;
 import com.dog_house.repository.HabitacionRepositorio;
 import com.dog_house.repository.ReservacionRepositorio;
 import com.dog_house.repository.UsuarioRepositorio;
+import com.dog_house.repository.Cuenta;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +34,11 @@ public class HomeControlador {
     @Autowired
 
     private ContactoRepositorio contactoRepositorio;
+    
+    
+    @Autowired
+    
+    private ContactoRepositorio cuentaRepositorio;
 
     @GetMapping("/habitaciones")
     public ModelAndView paginaHabitaciones(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -88,4 +95,10 @@ public class HomeControlador {
         return new ModelAndView("reservaciones")
                 .addObject("reservacion", reservaciones);
     }
+    
+    @GetMapping("/cuenta")
+public ModelAndView Cuenta() {
+    Cuenta cuenta = cuentaRepositorio.getOne((long) 1);
+    return new ModelAndView("/cuenta")
+            .addObject("cuenta", cuenta);
 }

@@ -4,11 +4,13 @@ import com.dog_house.entity.Contacto;
 import com.dog_house.entity.Habitacion;
 import com.dog_house.entity.Reservacion;
 import com.dog_house.entity.Cuenta;
+import com.dog_house.entity.Testimonio;
 import com.dog_house.repository.ContactoRepositorio;
 import com.dog_house.repository.HabitacionRepositorio;
 import com.dog_house.repository.ReservacionRepositorio;
+import com.dog_house.repository.TestimonioRepositorio;
 import com.dog_house.repository.UsuarioRepositorio;
-import com.dog_house.repository.Cuenta;
+//import com.dog_house.repository.Cuenta;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,6 +41,10 @@ public class HomeControlador {
     @Autowired
     
     private ContactoRepositorio cuentaRepositorio;
+    
+    @Autowired
+    
+    private TestimonioRepositorio testimonioRepositorio;
 
     @GetMapping("/habitaciones")
     public ModelAndView paginaHabitaciones(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -58,6 +64,12 @@ public class HomeControlador {
     public ModelAndView paginaReservaciones(@PageableDefault(sort = "id", size = 5) Pageable pageable) {
         Page<Reservacion> reservaciones = reservacionRepositorio.findAll(pageable);
         return new ModelAndView("/reservaciones").addObject("reservaciones", reservaciones);
+    }
+    @GetMapping("/testimonios")
+    public ModelAndView paginaTestimonios(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page <Testimonio> testimonios = testimonioRepositorio.findAll(pageable);
+        return new ModelAndView("testimonios")
+                .addObject("testimonios", testimonios);
     }
 
     @GetMapping("/Pagos")
@@ -96,9 +108,12 @@ public class HomeControlador {
                 .addObject("reservacion", reservaciones);
     }
     
-    @GetMapping("/cuenta")
-public ModelAndView Cuenta() {
-    Cuenta cuenta = cuentaRepositorio.getOne((long) 1);
-    return new ModelAndView("/cuenta")
-            .addObject("cuenta", cuenta);
+    
 }
+    
+//    @GetMapping("/cuenta")
+//public ModelAndView Cuenta() {
+//    Cuenta cuenta = cuentaRepositorio.getOne((long) 1);
+//    return new ModelAndView("/cuenta")
+//            .addObject("cuenta", cuenta);
+//}

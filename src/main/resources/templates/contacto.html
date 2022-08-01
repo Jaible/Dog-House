@@ -28,17 +28,17 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <h4>Direccion</h4>
+                        <h4>Dirección</h4>
                         <span th:if="${contacto.getDireccion() == 'default'}">No hay informacion disponible</span>
                         <span th:unless="${contacto.getDireccion == 'default'}"
                               th:text='*{Direccion}'></span>
 
-                        <h4>Correo electronico</h4>
+                        <h4>Correo electrónico</h4>
                         <span th:if="${contacto.getCorreo() == 'default'}">No hay informacion disponible</span>
                         <span th:unless="${contacto.getCorreo() == 'default'}"
                               th:text='*{Correo}'></span>
 
-                        <h4>Numeros Telefonicos</h4>
+                        <h4>Numeros Telefónicos</h4>
                         <span th:if="${contacto.getTelefonos() == 0}">No hay informacion disponible</span>
                         <span th:unless="${contacto.getTelefonos() == 0}"
                               th:text='*{Telefonos}'></span>                        

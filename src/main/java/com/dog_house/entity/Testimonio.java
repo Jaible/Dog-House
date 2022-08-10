@@ -8,8 +8,10 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -27,6 +29,27 @@ private String nombre;
 
 @NotBlank
 private String descripcion;
+
+private String rutaPortada;
+
+@Transient
+private MultipartFile portada;
+
+    public String getRutaPortada() {
+        return rutaPortada;
+    }
+
+    public void setRutaPortada(String rutaPortada) {
+        this.rutaPortada = rutaPortada;
+    }
+
+    public MultipartFile getPortada() {
+        return portada;
+    }
+
+    public void setPortada(MultipartFile portada) {
+        this.portada = portada;
+    }
 
     public long getId() {
         return id;
@@ -50,6 +73,24 @@ private String descripcion;
 
     public void setDescripcion(String Descripcion) {
         this.descripcion = Descripcion;
+    }
+    
+    public Testimonio(long id, String nombre, String descripcion, String rutaPortada, MultipartFile portada) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.rutaPortada = rutaPortada;
+        this.portada = portada;
+    }
+
+    public Testimonio(String nombre, String descripcion, String rutaPortada, MultipartFile portada) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.rutaPortada = rutaPortada;
+        this.portada = portada;
+    }
+
+    public Testimonio() {
     }
 
 

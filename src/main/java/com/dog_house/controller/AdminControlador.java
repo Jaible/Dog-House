@@ -4,10 +4,12 @@ import com.dog_house.entity.Contacto;
 import com.dog_house.entity.Cuenta;
 import com.dog_house.entity.Habitacion;
 import com.dog_house.entity.Reservacion;
+import com.dog_house.entity.Testimonio;
 import com.dog_house.repository.ContactoRepositorio;
 import com.dog_house.repository.HabitacionRepositorio;
 //import com.dog_house.repository.CuentaRepositorio;
 import com.dog_house.repository.ReservacionRepositorio;
+import com.dog_house.repository.TestimonioRepositorio;
 import com.dog_house.service.AlmacenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,13 +36,15 @@ public class AdminControlador {
 
     @Autowired
     private ContactoRepositorio contactoRepositorio;
-    
+
     @Autowired
     private ReservacionRepositorio reservacionRepositorio;
-    
+
+    @Autowired
+    private TestimonioRepositorio testimonioRepositorio;
+
 //     @Autowired
 //    private CuentaRepositorio cuentaRepositorio;
-
     @GetMapping("/habitaciones")
     public ModelAndView listadoHabitaciones(@PageableDefault(sort = "nombre", size = 5) Pageable pageable) {
         Page<Habitacion> habitaciones = habitacionRepositorio.findAll(pageable);
@@ -73,6 +77,25 @@ public class AdminControlador {
     public ModelAndView editarHabitacion(@PathVariable long id) {
         Habitacion habitacion = habitacionRepositorio.getOne(id);
         return new ModelAndView("admin/editar-habitacion").addObject("habitacion", habitacion);
+    }
+
+    @GetMapping("/testimonios/nuevo")
+    public ModelAndView crearTestimonio() {
+        return new ModelAndView("admin/nuevo-testimonio").addObject("testimonio", new Testimonio());
+    }
+
+    @PostMapping("/testimonios/nuevo")
+    public ModelAndView registrarTestimonio(@Validated Testimonio testimonio, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            if (testimonio.getPortada().isEmpty()) {
+                bindingResult.rejectValue("portada", "MultipartNotEmpty");
+            }
+            return new ModelAndView("admin/nuevo-testimonio").addObject("testimonio", testimonio);
+        }
+        String RutaPortada = servicio.almacenarArchivo(testimonio.getPortada());
+        testimonio.setRutaPortada(RutaPortada);
+        testimonioRepositorio.save(testimonio);
+        return new ModelAndView("redirect:/testimonios");
     }
 
     @PostMapping("/habitaciones/{id}/editar")
@@ -128,7 +151,7 @@ public class AdminControlador {
         contactoRepositorio.save(contactoDB);
         return new ModelAndView("redirect:/contacto");
     }
-    
+
     @GetMapping("/contacto/{id}/editar")
     public ModelAndView editarContacto() {
         Contacto contacto = contactoRepositorio.getOne((long) 1);
@@ -151,7 +174,7 @@ public class AdminControlador {
         contactoRepositorio.save(contactoDB);
         return new ModelAndView("redirect:/contacto");
     }
-    
+
     @GetMapping("/contacto/{id}/eliminar")
     public ModelAndView eliminarContacto() {
         Contacto contactoDB = contactoRepositorio.getOne((long) 1);
@@ -164,31 +187,31 @@ public class AdminControlador {
         contactoRepositorio.save(contactoDB);
         return new ModelAndView("redirect:/contacto");
     }
-    
+
     @GetMapping("/reservacion/{id}/editar")
     public ModelAndView editarReservación(@PathVariable long id) {
         Reservacion reservacion = reservacionRepositorio.getOne(id);
         return new ModelAndView("admin/editar-reservacion").addObject("reservacion", reservacion);
     }
-    
+
     @PostMapping("/reservacion/{id}/editar")
-    public ModelAndView actualizarReservacion(@PathVariable long id, 
+    public ModelAndView actualizarReservacion(@PathVariable long id,
             @Validated Reservacion reservacion, BindingResult bindingResult) {
-        
+
         if (bindingResult.hasErrors()) {
             return new ModelAndView("admin/editar-reservacion")
                     .addObject("reservacion", reservacion);
         }
-        
+
         Reservacion reservacionDB = reservacionRepositorio.getOne(id);
         reservacionDB.setHabitacion(reservacionDB.getHabitacion());
         reservacionDB.setFecha(reservacion.getFecha());
         reservacionDB.setNoches(reservacion.getNoches());
-        
+
         reservacionRepositorio.save(reservacionDB);
         return new ModelAndView("redirect:/reservacion");
     }
-    
+
     @GetMapping("/reservacion/{id}/eliminar")
     public String eliminarReservacion(@PathVariable long id) {
         reservacionRepositorio.deleteById(id);
@@ -206,8 +229,7 @@ public class AdminControlador {
 //    if (bindingResult.hasErrors()) {
 //        return new ModelAndView("admin/nueva-cuenta").addObject("cuenta", cuenta);
 //    }
-
-    //Cuenta cuentaDB = cuentaRepositorio.getOne((long) 1);
+//Cuenta cuentaDB = cuentaRepositorio.getOne((long) 1);
 //        cuentaDB.setNombreMascota(cuenta.getNombreMascota());
 //        cuentaDB.setRaza(cuenta.getRaza());
 //        cuentaDB.setEdad(cuenta.getRaza());

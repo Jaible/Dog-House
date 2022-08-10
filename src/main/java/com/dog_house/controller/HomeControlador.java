@@ -66,7 +66,7 @@ public class HomeControlador {
         return new ModelAndView("/reservaciones").addObject("reservaciones", reservaciones);
     }
     @GetMapping("/testimonios")
-    public ModelAndView paginaTestimonios(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ModelAndView paginaTestimonios(@PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         Page <Testimonio> testimonios = testimonioRepositorio.findAll(pageable);
         return new ModelAndView("testimonios")
                 .addObject("testimonios", testimonios);

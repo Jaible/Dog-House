@@ -122,7 +122,7 @@ public class AdminControlador {
     @PostMapping("/habitaciones/{id}/eliminar")
     public String eliminarHabitacion(@PathVariable long id) {
         Habitacion habitacion = habitacionRepositorio.getOne(id);
-        reservacionRepositorio.deleteByHabitacion(id);
+        reservacionRepositorio.deleteById(id);
         habitacionRepositorio.delete(habitacion);
         servicio.eliminarArchivo(habitacion.getRutaPortada());
 

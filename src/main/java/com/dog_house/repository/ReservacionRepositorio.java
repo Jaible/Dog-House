@@ -4,5 +4,5 @@ import com.dog_house.entity.Reservacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ReservacionRepositorio extends JpaRepository<Reservacion,Long>{
-    public void deleteByHabitacion(Long id);
+    public void deleteByHabitacionId(Long id);
 }

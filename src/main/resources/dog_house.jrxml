@@ -17,26 +17,21 @@
 		<band height="72">
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="4627a25a-17e0-4d0c-ac47-f2e0289e2312"/>
-				<image onErrorType="Icon">
-					<reportElement x="19" y="9" width="121" height="71" uuid="0c54fa63-766a-4bb1-8dee-c285335cfbd9"/>
-					<imageExpression><![CDATA[""]]></imageExpression>
-				</image>
 				<staticText>
-					<reportElement x="144" y="19" width="30" height="17" forecolor="#FFFFFF" uuid="9c0a6809-b86b-42d2-acf1-25f7f194f289"/>
+					<reportElement x="214" y="39" width="30" height="17" forecolor="#FFFFFF" uuid="9c0a6809-b86b-42d2-acf1-25f7f194f289"/>
 					<text><![CDATA[Hora:]]></text>
 				</staticText>
 				<textField pattern="HH:mm">
-					<reportElement x="180" y="20" width="100" height="19" forecolor="#FFFFFF" uuid="66fdb6ec-12c0-432b-9ff5-4748199b535b"/>
+					<reportElement x="250" y="40" width="100" height="19" forecolor="#FFFFFF" uuid="66fdb6ec-12c0-432b-9ff5-4748199b535b"/>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="144" y="50" width="46" height="17" forecolor="#FFFFFF" uuid="2d5ffc81-8158-4ba1-a792-e8a3cd8f0232"/>
-					<text><![CDATA[Usuario:]]></text>
+					<reportElement x="20" y="31" width="140" height="30" forecolor="#FFFFFF" uuid="758364a5-65cb-4598-b928-e74b04954e1f"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DOG HOUSE]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="190" y="50" width="100" height="17" forecolor="#FFFFFF" uuid="77ee857f-e08f-45cd-bbd2-a2268063ae38"/>
-					<textFieldExpression><![CDATA[$P{username}]]></textFieldExpression>
-				</textField>
 			</frame>
 		</band>
 	</title>

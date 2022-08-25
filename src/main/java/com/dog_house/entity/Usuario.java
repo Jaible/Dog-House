@@ -35,7 +35,7 @@ public class Usuario implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "id_mascota")
-    private Mascota mascota;
+    private Mascota mascota; 
     
     private String roles;
     private String permisos;

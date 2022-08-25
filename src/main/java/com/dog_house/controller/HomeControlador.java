@@ -14,6 +14,7 @@ import com.dog_house.repository.TestimonioRepositorio;
 import com.dog_house.repository.UsuarioRepositorio;
 import com.dog_house.service.AlmacenServiceImpl;
 import com.dog_house.service.ReportServiceImpl;
+import com.dog_house.service.Userprincipal;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
@@ -177,8 +178,10 @@ public class HomeControlador {
     }
     
     @GetMapping("/UserProfile")
-    public String mostrarUsuario(){
-        return "UserProfile";
+    public ModelAndView mostrarUsuario(Userprincipal principal){
+        Usuario usuario = principal.getUsuario();
+        return new ModelAndView("/UserProfile")
+                .addObject("usuario", usuario);
     }
     
     @GetMapping("/UserProfile/{id}/editar")

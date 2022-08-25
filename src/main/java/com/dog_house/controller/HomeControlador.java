@@ -15,6 +15,7 @@ import com.dog_house.repository.UsuarioRepositorio;
 import com.dog_house.service.AlmacenServiceImpl;
 import com.dog_house.service.ReportServiceImpl;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import net.sf.jasperreports.engine.JRException;
@@ -60,6 +61,16 @@ public class HomeControlador {
     
     @Autowired
     private TestimonioRepositorio testimonioRepositorio;
+    
+    @GetMapping("/")
+    public String index(){
+        return "index";
+    }
+    
+    @GetMapping("/error")
+    public String error(){
+        return "error";
+    }
 
     @GetMapping("/habitaciones")
     public ModelAndView paginaHabitaciones(@PageableDefault(sort = "nombre", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -93,13 +104,19 @@ public class HomeControlador {
         
         return new ModelAndView("Pagos")
                 .addObject("habitacion", habitacion)
-                .addObject("Factura", new Factura());
+                .addObject("Factura", new Factura())
+                .addObject("reservacion", new Reservacion());
     }
     
     @PostMapping("/habitaciones/{id}/Pagos")
     public String registrarFactura(@RequestParam("id") Long id,
-            @Validated Factura factura) throws JRException, IOException{
+            @Validated Factura factura, Reservacion reservacion) throws JRException, IOException{
+        Habitacion habitacion = habitacionRepositorio.getOne(id);
         facturaRepositorio.save(factura);
+        
+        
+        reservacion.setHabitacion(habitacion);
+        reservacionRepositorio.save(reservacion);
         
         String fileLink = reportService.generateReport(id, "pdf");
         return "redirect:/"+fileLink;
@@ -152,10 +169,11 @@ public class HomeControlador {
     @PostMapping("/testimonios/lista/{id}/eliminar")
     public String eliminarTestimonio(@PathVariable long id) {
         Testimonio testimonio = testimonioRepositorio.getOne(id);
+        testimonioRepositorio.delete(testimonio);
         testimonioRepositorio.deleteById(id);
         servicio.eliminarArchivo(testimonio.getRutaPortada());
         
-        return "redirect:/testimonios/lista";
+        return "redirect:/testimonios";
     }
     
     @GetMapping("/UserProfile")
@@ -167,5 +185,10 @@ public class HomeControlador {
     public ModelAndView editarUsuario(@PathVariable Long id){
         Usuario usuario = usuarioRepositorio.getOne(id);
         return new ModelAndView("/modificarCuenta").addObject("usuario",usuario);
+    }
+    
+    @GetMapping("/login")
+    public String login(){
+        return "/login";
     }
 }

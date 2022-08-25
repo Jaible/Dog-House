@@ -29,6 +29,18 @@
                     </div>
                     
                     <input type="hidden" th:name="id" th:value="${habitacion.getId()}">
+                    
+                    <div class="mb-3">
+                        <label for="Direccion" class="form-label">Fecha de reservacion</label>
+                        <input type="date" name="Direccion"
+                               id="Direccion" class="form-control" th:field="${reservacion.fecha}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="Direccion" class="form-label">Cantidad de noches</label>
+                        <input type="text" name="Direccion"
+                               id="Direccion" class="form-control" th:field="${reservacion.noches}" required>
+                    </div>
 
                     <div class="mb-3">
                         <label for="Direccion" class="form-label">Card number</label>

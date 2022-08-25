@@ -6,16 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario implements Serializable {
@@ -43,6 +39,7 @@ public class Usuario implements Serializable {
     
     private String roles;
     private String permisos;
+    private int active;
 
     public long getId() {
         return id;
@@ -98,6 +95,14 @@ public class Usuario implements Serializable {
 
     public void setPermisos(String permisos) {
         this.permisos = permisos;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
     public List<String> getRoleList() {

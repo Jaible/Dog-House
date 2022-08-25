@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <title>Dog House</title>
         <meta charset="utf-8">
@@ -20,12 +21,12 @@
             </div>
 
             <div class="menu-bar">
-                <ul>
+                <ul>    
+                    <li><a href="/UserProfile" sec:authorize="isAuthenticated()">Mi Cuenta</a></li>
+                    <li><a href="Login.html" sec:authorize="!isAuthenticated()">Login</a></li>
                     <li><a href="/">Inicio</a></li>
-                    <li><a href="/UserProfile">Mi Cuenta</a></li>
-                    <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
-                    <li><a href="Login.html">Login</a></li>
                     <li><a href="/reservacion">Mis reservaciones</a></li>
+                    <li><a href="/habitaciones">Reserva Una Habitacion</a></li>
                 </ul>
             </div>
         </header>

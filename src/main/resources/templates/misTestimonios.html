@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-        <title>Listado de habitaciones</title>
+        <title>Mis testimonios</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="/css/cuartos.css"/>
-        <link rel="stylesheet" href="/css/master.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/testimonios.css"/>
+        <link rel="stylesheet" href="/css/master.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
@@ -33,14 +31,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <tr>
                         <th></th>
                         <th>Nombre</th>
-                        <th>Servicios disponibles</th>
-                        <th>Precio</th>
+                        <th>Descripcion</th>
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr th:each="habitacion: ${habitaciones}" th:object="${habitacion}">
+                    <tr th:each="testimonio: ${testimonios}" th:object="${testimonio}">
                         <td style="width: 150px;"><a
                                 th:href="@{/assets/{filename}(filename=*{rutaPortada})}"
                                 data-fancybox> <img
@@ -49,20 +46,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </a></td>
                         <td>
                             <div th:text="*{nombre}" class="fs-5 fw-bold"></div>
+                        </td>
+                        <td>
                             <p th:text="*{descripcion}"></p>
                         </td>
-                        <td>
-                            <p th:text="*{servicios}"></p>
-                        </td>
-                        <td>
-                            <span th:text="*{precio}"></span> dolares.
-                        </td>
+                        
                         <td class="text-end"><a
-                                th:href="@{/admin/habitaciones/{id}/editar(id=*{id})}">Editar</a> <a
+                                th:href="@{/testimonios/lista/{id}/editar(id=*{id})}">Editar</a> <a
                                 href="javascript:void(0)" class="text-danger ms-3"
                                 th:onclick="'eliminarHabitacion(' + *{id} +')'">Eliminar</a>
                             <form th:id="'eliminarHabitacionForm' + *{id}"
-                                  th:action="@{/admin/habitaciones/{id}/eliminar(id=*{id})}"
+                                  th:action="@{/testimonios/lista/{id}/eliminar(id=*{id})}"
                                   method="post" class="d-none"></form></td>
                     </tr>
                 </tbody>

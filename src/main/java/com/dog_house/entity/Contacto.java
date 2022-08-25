@@ -18,7 +18,6 @@ import javax.validation.constraints.NotNull;
  * @author crist
  */
 @Entity 
-
 public class Contacto implements Serializable {
 
     @Id

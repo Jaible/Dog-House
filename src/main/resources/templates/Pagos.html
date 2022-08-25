@@ -5,6 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/Pagos.css">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <header layout:fragment="header">
@@ -28,24 +35,40 @@
         </header>
 
         <div class="login-box">
-            <img src="images/DogHouse.jpg" class="Pago" alt="Dog Hause"/>
-            <h1>Payment</h1>
-            <form>
-                <!-- USERNAME INPUT -->
-                <label for="username">Username</label>
-                <input type="text" placeholder="Enter Username">
-                <!-- Number -->
-                <label for="Number">Card Number</label>
-                <input type="Number" placeholder="Enter Card Number">
-                <!-- Expitation Date -->
-                <label for="ExpirationDate">Expiration Date</label>
-                <input type="Number" placeholder="Enter Date">
-                <!-- Sucurity Code -->
-                <label for="Securitycode">Segurity Code</label>
-                <input type="Number" placeholder=" XXX ">
-                <input type="submit" value="Pay">
+            <img src="/images/DogHouse.jpg" class="Pago" alt="Dog House"/>
+            <h1>PAYMENT</h1>
+            <div layout:fragment="form" class="container my-5" enctype="multipart/form-data">
+                <form action="" method="post" th:object="${Factura}">
 
-            </form>
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Asegurese de rellenar todos los espacios.
+                    </div>
+                    
+                    <input type="hidden" th:name="id" th:value="${habitacion.getId()}">
+
+                    <div class="mb-3">
+                        <label for="Direccion" class="form-label">Card number</label>
+                        <input type="text" name="Direccion"
+                               id="Direccion" class="form-control" th:field="*{cardNumber}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Correo" class="form-label">Fecha Expiracion</label>
+                        <input type="date" name="Correo" placeholder="Digite el correo"
+                               id="Correo" class="form-control" th:field="*{fechaExpiracion}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Telefonos" class="form-label">Security Code</label>
+                        <input type="text" name="Telefonos"
+                               id="Telefonos" class="form-control" th:field="*{securityCode}" required>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Pagar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>

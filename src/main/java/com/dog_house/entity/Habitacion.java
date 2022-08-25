@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -95,7 +94,7 @@ public class Habitacion implements Serializable {
 
     public Habitacion(Integer id, String nombre, String descripcion, String servicios, int precio, MultipartFile portada,
             String rutaPortada) {
-        this.id = id;
+        this.id = id;   
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.servicios = servicios;

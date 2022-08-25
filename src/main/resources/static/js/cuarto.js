@@ -45,7 +45,8 @@ const Confirm = {
         btnOk.addEventListener('click', () => {
             options.onok();
             this._close(confirmE1);
-            window.location.href = "/Pagos";
+            var url = window.location.href;
+            window.location.href = url+"/Pagos";
         });
         
         [btnClose, btnCancel].forEach(el => {

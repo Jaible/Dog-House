@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
@@ -35,14 +36,13 @@ public class Usuario implements Serializable {
 
     @NotBlank
     private String telefono;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "id_mascota")
+    private Mascota mascota;
+    
     private String roles;
     private String permisos;
-
-    @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "reservaciones_usuario", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_reservacion"))
-    private List<Reservacion> reservaciones;
 
     public long getId() {
         return id;

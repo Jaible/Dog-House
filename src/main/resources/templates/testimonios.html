@@ -20,17 +20,17 @@
     <body>
          <div class="container my-5">
             <h1 class="titulo">Testimonios</h1>
-
-            <div class="text-end">
+            <div class="text-end" sec:authorize="isAuthenticated()">
                 <a href="/admin/testimonios/nuevo" class="btn btn-primary mb-3">Nuevo Testimonio</a>
+                <a href="/testimonios/lista" class="btn btn-primary mb-3">Mis testimonios</a>
             </div>
 
             <div class="row">
                 <div class="row">
                     <div class="col-md-3 my-5" th:each="testimonios : ${testimonios}"
                          th:object="${testimonios}" style="width:50%;">
-                        <a th:href="@{/testimonios/{id}(id=*{id})}" class="card shadow-lg"
-                           style="text-decoration: none;">
+                        <a class="card shadow-lg"
+                           style="text-decoration: none;" readonly>
                             <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}"
                                  th:alt="*{nombre}" class="card-img-top"/>
                             <div class="card-body">
@@ -43,10 +43,5 @@
             </div>
         </div>
   </body>
-  <footer layout:fragment="footer" class='footer'>
-            <ul>
-                <li><a href="/contacto">Contactanos</a></li>
-                <li><a href="/testimonios">Testimonios</a></li>
-            </ul>
-        </footer>
+ <footer th:insert="/master :: footer"></footer>
 </html>

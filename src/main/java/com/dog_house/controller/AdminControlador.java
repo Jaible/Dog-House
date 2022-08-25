@@ -1,7 +1,6 @@
 package com.dog_house.controller;
 
 import com.dog_house.entity.Contacto;
-import com.dog_house.entity.Cuenta;
 import com.dog_house.entity.Habitacion;
 import com.dog_house.entity.Reservacion;
 import com.dog_house.entity.Testimonio;
@@ -11,7 +10,7 @@ import com.dog_house.repository.HabitacionRepositorio;
 import com.dog_house.repository.ReservacionRepositorio;
 import com.dog_house.repository.TestimonioRepositorio;
 import com.dog_house.service.AlmacenServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -42,9 +41,8 @@ public class AdminControlador {
 
     @Autowired
     private TestimonioRepositorio testimonioRepositorio;
-
-//     @Autowired
-//    private CuentaRepositorio cuentaRepositorio;
+    
+    
     @GetMapping("/habitaciones")
     public ModelAndView listadoHabitaciones(@PageableDefault(sort = "nombre", size = 5) Pageable pageable) {
         Page<Habitacion> habitaciones = habitacionRepositorio.findAll(pageable);
@@ -124,6 +122,7 @@ public class AdminControlador {
     @PostMapping("/habitaciones/{id}/eliminar")
     public String eliminarHabitacion(@PathVariable long id) {
         Habitacion habitacion = habitacionRepositorio.getOne(id);
+        reservacionRepositorio.deleteByHabitacion(id);
         habitacionRepositorio.delete(habitacion);
         servicio.eliminarArchivo(habitacion.getRutaPortada());
 
@@ -217,68 +216,5 @@ public class AdminControlador {
         reservacionRepositorio.deleteById(id);
         return "redirect:/reservacion";
     }
+    
 }
-
-//@GetMapping("/cuenta/nueva")
-//public ModelAndView formularioCuenta() {
-//    return new ModelAndView("admin/nueva-cuenta").addObject("cuenta", new Cuenta());
-//}
-//}
-//@PostMapping("/cuenta/nueva")
-//public ModelAndView registrarContacto(@Validated Cuenta cuenta, BindingResult bindingResult) {
-//    if (bindingResult.hasErrors()) {
-//        return new ModelAndView("admin/nueva-cuenta").addObject("cuenta", cuenta);
-//    }
-//Cuenta cuentaDB = cuentaRepositorio.getOne((long) 1);
-//        cuentaDB.setNombreMascota(cuenta.getNombreMascota());
-//        cuentaDB.setRaza(cuenta.getRaza());
-//        cuentaDB.setEdad(cuenta.getRaza());
-//        cuentaDB.setGustos(cuenta.getGustos());
-//        cuentaDB.setDisgustos(cuenta.getDisgustos());
-//        cuentaDB.setEmailDueno(cuenta.getEmailDueno());
-//        contactoDB.setTelefonos(contacto.getTelefonos());
-//        
-//        cuentaRepositorio.save(cuentaDB);
-//        return new ModelAndView("redirect:/cuenta");
-//    }
-//
-//    @GetMapping("/cuenta/{id}/editar")
-//    public ModelAndView editarCuenta() {
-//        Cuenta cuenta = cuentaRepositorio.getOne((long) 1);
-//        return new ModelAndView("/admin/nueva-cuenta").addObject("cuenta", cuenta);
-//    }
-//
-//    @PostMapping("/cuenta/{id}/editar")
-//    public ModelAndView actualizarCuenta(@Validated Cuenta cuenta, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return new ModelAndView("admin/nueva-cuenta").addObject("cuenta", cuenta);
-//        }
-//
-//        Cuenta cuentaDB = cuentaRepositorio.getOne((long) 1);
-//        cuentaDB.setNombreMascota(cuenta.getNombreMascota());
-//        cuentaDB.setRaza(cuenta.getRaza());
-//        cuentaDB.setEdad(cuenta.getRaza());
-//        cuentaDB.setGustos(cuenta.getGustos());
-//        cuentaDB.setDisgustos(cuenta.getDisgustos());
-//        cuentaDB.setEmailDueno(cuenta.getEmailDueno());
-//        contactoDB.setTelefonos(contacto.getTelefonos());
-//
-//        cuentaRepositorio.save(cuentaDB);
-//        return new ModelAndView("redirect:/cuenta");
-//    }
-//
-//    @PostMapping("/cuenta/{id}/eliminar")
-//    public ModelAndView eliminarCuenta() {
-//        Cuenta cuentaDB = cuentaRepositorio.getOne((long) 1);
-//        cuentaDB.setNombreMascota("default");
-//        cuentaDB.setRaza("default");
-//        cuentaDB.setEdad("default");
-//        cuentaDB.setGustos("default");
-//        cuentaDB.setDisgustos("default");
-//        cuentaDB.setEmailDueno("default");
-//        cuentaDB.setTelefonos("0");
-//
-//        cuentaRepositorio.save(cuentaDB);
-//        return new ModelAndView("redirect:/cuenta");
-//    }
-//}

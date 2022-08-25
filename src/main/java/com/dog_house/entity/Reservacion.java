@@ -30,6 +30,10 @@ public class Reservacion implements Serializable {
     @NotNull
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate fecha;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
     public long getId() {
         return id;
